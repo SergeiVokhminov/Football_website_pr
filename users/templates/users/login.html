@@ -1,0 +1,30 @@
+{% extends "home_pages/base.html" %}
+{% load my_tags %}
+{% block title %}Вход на сайт{% endblock %}
+{% block content %}
+<div class="modal modal-sheet position-static d-block p-4 py-md-5" tabindex="-1" role="dialog" id="modalSignin">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content rounded-4 shadow">
+            <div class="modal-header p-5 pb-4 border-bottom-0 d-flex justify-content-center">
+                <h1 class="fw-bold mb-0 fs-2">Вход на сайт</h1>
+            </div>
+            <div class="modal-body p-5 pt-0">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div class="d-flex justify-content-center gap-2 mt-4">
+                        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">
+                            Вход
+                        </button>
+                        <a class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" href="{% url 'home_pages:home' %}">
+                            Отмена
+                        </a>
+                    </div>
+                    <hr class="my-4">
+                    <small class="text-body-secondary">Нажав кнопку Вход, вы будете авторизированны на сайте.</small>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
