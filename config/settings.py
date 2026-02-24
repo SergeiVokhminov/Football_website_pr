@@ -32,6 +32,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
+    "users",
+    "home_pages",
 ]
 
 # Список промежуточного ПО, которое обрабатывает входящие запросы и выходящие ответы.
@@ -138,3 +141,13 @@ EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 # SERVER_EMAIL = EMAIL_HOST_USER
+
+# Стандартная модель пользователя
+AUTH_USER_MODEL = "users.User"
+
+# Именованный адрес для авторизации
+LOGIN_URL = "users:login"
+# Именованный адрес на который следует перенаправлять пользователя после успешной авторизации
+LOGIN_REDIRECT_URL = "home_pages:home"
+# Именованный адрес на который перенаправляется пользователь после выхода
+LOGOUT_REDIRECT_URL = "home_pages:home"
