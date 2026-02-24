@@ -1,0 +1,154 @@
+{% extends "home_pages/base.html" %}
+{% load my_tags %}
+{% block title %}Главная страница{% endblock %}
+{% block content %}
+<section class="text-center container text-white">
+    {% if user.is_superuser %}
+    <h1 class="fw-light">{{ greeting }}, {{ employee.first_name | default:employee.email }}!</h1>
+    <section class="py-3 text-center container text-white">
+        <div class="d-flex justify-content-center gap-3">
+            <div class="col-sm-2">
+                <label for="date_application" class="form-label">Дата:</label>
+                {% now "d.m.Y" as current_date %}
+                <div class="form-control" id="date_application" style="text-align: center;">{{ current_date }}</div>
+                <div class="invalid-feedback">
+                    Valid first name is required.
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <label for="time_application" class="form-label">Время:</label>
+                {% now "H:i" as current_time %}
+                <div class="form-control" id="time_application" style="text-align: center;">{{ current_time }}</div>
+                <div class="invalid-feedback">
+                    Valid first name is required.
+                </div>
+            </div>
+        </div>
+    </section>
+    {% elif user.is_authenticated %}
+        <h1 class="fw-light">{{ greeting }}, {{ employee.first_name | default:employee.email }}</h1>
+            <hr class="my-4">
+        <h1 class="fw-light">Проверь свои задачи и заявки.</h1>
+    {% else %}
+        <h1 class="display-6">Сервис Управления Отделом</h1>
+        <p class="lead">С. У. З. О. - Это отличное место для управления Отделом.
+            Вы можете организовать постановку, контроль, управления задачами сотрудников и заявками Отдела.
+        </p>
+    {% endif %}
+</section>
+<hr class="my-4 text-white">
+
+{% if employee.is_superuser %}
+<div class="text-center container text-white">
+    <h3 class="fw-light">
+        Общая информация по Отделу на {{current_date}} года. <!-- Добавить информацию по какому Отделу информация -->
+    </h3>
+</div>
+<section class="py-3 text-center container text-white">
+    <div class="d-flex justify-content-center gap-3">
+        <div class="col-sm-2">
+            <label for="employee" class="form-label">Сотрудников на работе:</label>
+            <div class="form-control" id="employee" style="text-align: center;">
+                {{ user_at_work_count }}
+            </div>
+            <div class="invalid-feedback">
+                Valid first name is required.
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <label for="task_count_start" class="form-label">Задач в работе:</label>
+            <div class="form-control" id="task_count_start" style="text-align: center;">
+                {{ start_task_count }}
+            </div>
+            <div class="invalid-feedback">
+                Valid first name is required.
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <label for="task_count_free" class="form-label">Свободных задач:</label>
+            <div class="form-control" id="task_count_free" style="text-align: center;">
+                {{ free_task_count }}
+            </div>
+            <div class="invalid-feedback">
+                Valid first name is required.
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <label for="application_count_work" class="form-label">Заявок в работе:</label>
+            <div class="form-control" id="application_count_work" style="text-align: center;">
+                {{ application_count }}
+            </div>
+            <div class="invalid-feedback">
+                Valid first name is required.
+            </div>
+        </div>
+    </div>
+</section>
+<hr class="my-4 text-white">
+{% endif %}
+
+<section class="py-5 text-center container">
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-4 text-center"> <!--  -->
+    {% if user.is_authenticated %}
+    <div class="col">
+        <a class="btn btn-success w-100" style="text-align: center"
+           href="#" role="button">Мероприятия в здании Главного штаба
+        </a>
+    </div>
+    <div class="col">
+        <a class="btn btn-success w-100" style="text-align: center"
+           href="{% url 'tasks:task_info' %}" role="button">Информация о задачах
+        </a>
+    </div>
+    <div class="col">
+        <a class="btn btn-success w-100" style="text-align: center"
+           href="{% url 'applications:application_info' %}" role="button">Информация о заявках
+        </a>
+    </div>
+    <div class="col">
+        <a class="btn btn-success w-100" style="text-align: center"
+           href="{% url 'users:user_list' %}" role="button">Информация о сотрудниках
+        </a>
+    </div>
+    <div class="col">
+        <a class="btn btn-success w-100" style="text-align: center"
+           href="{% url 'users:user_info' user.pk %}" role="button">Личный кабинет
+        </a>
+    </div>
+    {% if user.is_superuser %}
+    <div class="col">
+        <a class="btn btn-success w-100" style="text-align: center"
+           href="#" role="button">Информация об Отделе
+        </a>
+    </div>
+    <div class="col">
+        <a class="btn btn-success w-100" style="text-align: center"
+           href="{% url 'admin:index' %}" role="button">Войти в административную часть сайта
+        </a>
+    </div>
+    {% endif %}
+    <div class="col">
+        <form method="post" action="{% url 'users:logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success w-100" style="text-align: center" role="button">Выход
+            </button>
+        </form>
+    </div>
+    {% else %}
+    <div class="col">
+        <a class="btn btn-success w-50" style="text-align: center"
+           href="{% url 'users:login' %}" role="button">Вход на сайт
+        </a>
+    </div>
+    <div class="col">
+        <a class="btn btn-success w-50" style="text-align: center"
+           href="{% url 'users:register' %}" role="button">Зарегистрироваться на сайте
+        </a>
+    </div>
+    {% endif %}
+
+</div>
+</section>
+<hr class="my-4 text-white">
+
+{% endblock %}
