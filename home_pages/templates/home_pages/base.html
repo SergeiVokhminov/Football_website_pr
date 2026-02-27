@@ -1,6 +1,7 @@
 <!DOCTYPE html> <!-- Определяет тип документа -->
 
 {% load static %} <!-- Загружает тег static для работы со статическими файлами (CSS, JS и т.д.) в Django. -->
+{% load my_tags %}
 
 <html lang="ru-RU"> <!-- Указывает язык страницы -->
 
@@ -9,10 +10,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" /> <!-- Делает страницу адаптивной для мобильных и десктопных устройств. -->
     <title>{% block title %}{% endblock %}</title> <!-- Заголовок страницы, динамически заменяемый содержимым блока title. -->
     <link href="{% static '/css/bootstrap.min.css' %}" rel="stylesheet" /> <!-- Подключаем статические файлы со стилями Bootstrap -->
-    <link href="{% static '/css/styles_new_test.css' %}" rel="stylesheet" /> <!-- Подключаем свой статический файл со стилями -->
+<!--    <link href="{% static '/css/styles_new_test.css' %}" rel="stylesheet" /> &lt;!&ndash; Подключаем свой статический файл со стилями &ndash;&gt;-->
+    <link href="{% static '/css/my.css' %}" rel="stylesheet" />
 </head>
 
-<body class="d-flex flex-column min-vh-100"> <!-- Начало тела страницы -->
+<body class="d-flex flex-column min-vh-100 {% get_bg_class %}"> <!-- Начало тела страницы -->
 
     <!-- HEADER SECTION -->
     <header data-bs-theme="dark">
@@ -20,11 +22,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-8 col-md-7 py-4">
-                        <h4>Сервис Управления Отделом</h4>
+                        <h4>Сервис Управления и Контроля за Командой.</h4>
                         <p class="text-body-secondary">
-                            Это отличное место для управления задачами Отдела.
-                            Вы можете организовать постановку, контроль, управления задачами сотрудников
-                            и заявками Отдела.
+                            Это отличное место для управления и контроля за Командой.
                         </p>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                         <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
                         <circle cx="12" cy="13" r="4"/>
                     </svg>
-                    <strong>С.У.З.О.</strong>
+                    <strong>С.У.К.К.</strong>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -76,7 +76,7 @@
                 <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
                     <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
                 </a>
-                <span class="mb-3 mb-md-0 text-white">&copy; 2025 С. У. З. О.</span>
+                <span class="mb-3 mb-md-0 text-white">&copy; 2026 г. С. У. К. К.</span>
             </div>
 
             <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">

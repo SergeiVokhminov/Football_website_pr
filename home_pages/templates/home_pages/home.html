@@ -4,7 +4,7 @@
 {% block content %}
 <section class="text-center container text-white">
     {% if user.is_superuser %}
-    <h1 class="fw-light">{{ greeting }}, {{ employee.first_name | default:employee.email }}!</h1>
+    <h1 class="fw-light">{{ greeting }}, {{ user.first_name | default:user.email }}!</h1>
     <section class="py-3 text-center container text-white">
         <div class="d-flex justify-content-center gap-3">
             <div class="col-sm-2">
@@ -26,61 +26,43 @@
         </div>
     </section>
     {% elif user.is_authenticated %}
-        <h1 class="fw-light">{{ greeting }}, {{ employee.first_name | default:employee.email }}</h1>
+        <h1 class="fw-light">{{ greeting }}, {{ user.first_name | default:user.email }}</h1>
             <hr class="my-4">
-        <h1 class="fw-light">Проверь свои задачи и заявки.</h1>
+        <h1 class="fw-light">Проверь свою статистику.</h1>
     {% else %}
-        <h1 class="display-6">Сервис Управления Отделом</h1>
-        <p class="lead">С. У. З. О. - Это отличное место для управления Отделом.
-            Вы можете организовать постановку, контроль, управления задачами сотрудников и заявками Отдела.
-        </p>
+        <h1 class="display-6">Сервис Управления и Контроля за Командой.</h1>
+        <p class="lead">С. У. К. К. - Это отличное место для управления и контроля за Командой.</p>
     {% endif %}
 </section>
 <hr class="my-4 text-white">
 
-{% if employee.is_superuser %}
+{% if user.is_superuser %}
 <div class="text-center container text-white">
     <h3 class="fw-light">
-        Общая информация по Отделу на {{current_date}} года. <!-- Добавить информацию по какому Отделу информация -->
+        Общая информация по Командам на {{current_date}} года. <!-- Добавить информацию по какому Отделу информация -->
     </h3>
 </div>
 <section class="py-3 text-center container text-white">
     <div class="d-flex justify-content-center gap-3">
-        <div class="col-sm-2">
-            <label for="employee" class="form-label">Сотрудников на работе:</label>
-            <div class="form-control" id="employee" style="text-align: center;">
-                {{ user_at_work_count }}
-            </div>
-            <div class="invalid-feedback">
-                Valid first name is required.
-            </div>
+        <div class="col">
+            <a class="btn btn-success w-100" style="text-align: center"
+               href="#" role="button">2015
+            </a>
         </div>
-        <div class="col-sm-2">
-            <label for="task_count_start" class="form-label">Задач в работе:</label>
-            <div class="form-control" id="task_count_start" style="text-align: center;">
-                {{ start_task_count }}
-            </div>
-            <div class="invalid-feedback">
-                Valid first name is required.
-            </div>
+        <div class="col">
+            <a class="btn btn-success w-100" style="text-align: center"
+               href="#" role="button">2016
+            </a>
         </div>
-        <div class="col-sm-2">
-            <label for="task_count_free" class="form-label">Свободных задач:</label>
-            <div class="form-control" id="task_count_free" style="text-align: center;">
-                {{ free_task_count }}
-            </div>
-            <div class="invalid-feedback">
-                Valid first name is required.
-            </div>
+        <div class="col">
+            <a class="btn btn-success w-100" style="text-align: center"
+               href="#" role="button">2017
+            </a>
         </div>
-        <div class="col-sm-2">
-            <label for="application_count_work" class="form-label">Заявок в работе:</label>
-            <div class="form-control" id="application_count_work" style="text-align: center;">
-                {{ application_count }}
-            </div>
-            <div class="invalid-feedback">
-                Valid first name is required.
-            </div>
+        <div class="col">
+            <a class="btn btn-success w-100" style="text-align: center"
+               href="#" role="button">2018
+            </a>
         </div>
     </div>
 </section>
@@ -92,35 +74,10 @@
     {% if user.is_authenticated %}
     <div class="col">
         <a class="btn btn-success w-100" style="text-align: center"
-           href="#" role="button">Мероприятия в здании Главного штаба
-        </a>
-    </div>
-    <div class="col">
-        <a class="btn btn-success w-100" style="text-align: center"
-           href="{% url 'tasks:task_info' %}" role="button">Информация о задачах
-        </a>
-    </div>
-    <div class="col">
-        <a class="btn btn-success w-100" style="text-align: center"
-           href="{% url 'applications:application_info' %}" role="button">Информация о заявках
-        </a>
-    </div>
-    <div class="col">
-        <a class="btn btn-success w-100" style="text-align: center"
-           href="{% url 'users:user_list' %}" role="button">Информация о сотрудниках
-        </a>
-    </div>
-    <div class="col">
-        <a class="btn btn-success w-100" style="text-align: center"
-           href="{% url 'users:user_info' user.pk %}" role="button">Личный кабинет
+           href="#" role="button">Личный кабинет
         </a>
     </div>
     {% if user.is_superuser %}
-    <div class="col">
-        <a class="btn btn-success w-100" style="text-align: center"
-           href="#" role="button">Информация об Отделе
-        </a>
-    </div>
     <div class="col">
         <a class="btn btn-success w-100" style="text-align: center"
            href="{% url 'admin:index' %}" role="button">Войти в административную часть сайта
