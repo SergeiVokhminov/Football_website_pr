@@ -1,0 +1,64 @@
+{% extends 'home_page/base.html' %}
+{% load my_tags %}
+{% block title %}Личный кабинет{% endblock %}
+{% block content %}
+<div class="container py-3">
+    <main>
+        <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                    <div class="card-header py-3 text-bg-primary border-primary">
+                        <h4 class="my-0 fw-normal">Личная информация</h4>
+                    </div>
+                    <div class="card-body">
+                        <h1 class="card-title pricing-card-title">Данные</h1>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>Описание Ваших личных данных</li>
+                        </ul>
+                        <a href="{% url 'employees:employee_detail' employee.pk %}" class="w-100 btn btn-lg btn-primary">
+                            Подробная информация
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                    <div class="card-header py-3 text-bg-primary border-primary">
+                        <h4 class="my-0 fw-normal">Планы работ на месяц</h4>
+                    </div>
+                    <div class="card-body">
+                        <h1 class="card-title pricing-card-title">Планы</h1>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>Описание работ сотрудников участков на месяц</li>
+                        </ul>
+                        <a href="#" class="w-100 btn btn-lg btn-primary">
+                            Подродная информация
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                    <div class="card-header py-3 text-bg-primary border-primary">
+                        <h4 class="my-0 fw-normal">Пятничный отчет</h4>
+                    </div>
+                    <div class="card-body">
+                        <h1 class="card-title pricing-card-title">Отчеты</h1>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>О работоспособности систем перед выходными</li>
+                        </ul>
+                        <a href="#" class="w-100 btn btn-lg btn-primary">
+                            Подродная информация.
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<section class="text-center container">
+    <a href="{% url 'home_page:home' %}" class="w-50 btn btn-lg btn-primary">На главную</a>
+</section>
+
+{% endblock %}
