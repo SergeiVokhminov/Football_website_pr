@@ -7,7 +7,7 @@ from users.models import User
 class UserAuthForm(AuthenticationForm):
     """Форма входа пользователя на сайт."""
 
-    username = forms.CharField(
+    email = forms.CharField(
         max_length=254,
         widget=forms.TextInput(
             attrs={"class": "form-control", "placeholder": "Введите email"}
