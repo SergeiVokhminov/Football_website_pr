@@ -7,6 +7,8 @@ from blogs.models import Blog
 
 
 class BlogListView(ListView):
+    """Контроллер отображения списка блогов."""
+
     model = Blog
 
     def get_queryset(self):
@@ -14,6 +16,8 @@ class BlogListView(ListView):
 
 
 class BlogCreateView(CreateView):
+    """Контроллер добавления блогов."""
+
     model = Blog
     form_class = BlogForm
     # fields = ("title", "article", "image", "publication_sign")
@@ -21,6 +25,8 @@ class BlogCreateView(CreateView):
 
 
 class BlogDetailView(DetailView):
+    """Контроллер отображения детальной информации о блоге."""
+
     model = Blog
 
     def get_object(self, queryset=None):
@@ -31,6 +37,8 @@ class BlogDetailView(DetailView):
 
 
 class BlogUpdateView(UpdateView):
+    """Контроллер обновления блога."""
+
     model = Blog
     form_class = BlogForm
     # fields = ("title", "article", "image", "publication_sign")
@@ -41,5 +49,7 @@ class BlogUpdateView(UpdateView):
 
 
 class BlogDeleteView(DeleteView):
+    """Контроллер удаления блогов."""
+
     model = Blog
     success_url = reverse_lazy("blogs:blog_list")
