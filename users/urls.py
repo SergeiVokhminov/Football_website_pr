@@ -5,7 +5,8 @@ from users.apps import UsersConfig
 from users.views import (
     UserLoginView,
     UserRegisterView,
-    EmailVerifyView, RegistrationSuccessView,
+    EmailVerifyView,
+    RegistrationSuccessView,
 )
 
 app_name = UsersConfig.name
