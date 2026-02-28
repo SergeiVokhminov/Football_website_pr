@@ -5,7 +5,7 @@ from users.models import User
 
 
 class UserAuthForm(AuthenticationForm):
-    """Форма входа пользователя на сайт."""
+    """Форма для входа пользователя на сайт."""
 
     email = forms.CharField(
         max_length=254,
