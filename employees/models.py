@@ -1,5 +1,3 @@
-import uuid
-
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -98,5 +96,5 @@ def create_employee_profile(sender, instance, created, **kwargs):
     if created and not instance.is_superuser:
         Employee.objects.create(
             user=instance,
-            internal_token=instance.token # Дублируем или используем свой
+            token=instance.token # Дублируем или используем свой
         )
